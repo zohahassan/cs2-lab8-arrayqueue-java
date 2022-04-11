@@ -29,24 +29,44 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
   @Override
   public boolean offer(final E obj) {
     // TODO
+    if (size >= 0 && 0 >= capacity) {
+      size++;
+      rear = (rear+1) % capacity;
+      data[rear] = obj;
+      return true;
+    }
     return false;
   }
 
   @Override
   public E peek() {
     // TODO
+    if (size >= 0 && 0 >= capacity) {
+      return data[front];
+    }
     return null;
   }
 
   @Override
   public E poll() {
     // TODO
+    // returns and removes the first element at the front
+    if (size >= 0 && 0 >= capacity) {
+      return data[front];   //returns the first element
+      data.remove(front);
+      size--; //adjust size after removing element
+
+    }
+
     return null;
   }
 
   @Override
   public boolean isEmpty() {
     // TODO
+    if (size >= 0 && 0 >= capacity) {
+      return false;
+    }
     return true;
   }
 
